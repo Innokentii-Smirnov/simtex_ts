@@ -74,15 +74,15 @@ export  class Split {
           'multiple suffix characters \'' + WordConstants.subscript + '\' available in split \'' + text + '\'.'));
 
       this.subscript = this.normalize(split[1]);
-      let isMetadataWarn = false;
+      // let isMetadataWarn = false;
        let isSurplusWarn = false;
       for (const slice of this.subscript) {
-        if (!isMetadataWarn && slice instanceof Metadata) {
+        /*if (!isMetadataWarn && slice instanceof Metadata) {
           status.add(new  StatusEvent(StatusLevel.info, StatusEventCode.malformed,
             'Marks \'' + split[1] + '\' are not allowed in subscript.'));
           
           isMetadataWarn = true;
-        } else if (!isSurplusWarn && slice instanceof Surplus) {
+        } else*/ if (!isSurplusWarn && slice instanceof Surplus) {
           status.add(new  StatusEvent(StatusLevel.info, StatusEventCode.malformed,
             'Surplus \'' + split[1] + '\' are not allowed in subscript.'));
           
