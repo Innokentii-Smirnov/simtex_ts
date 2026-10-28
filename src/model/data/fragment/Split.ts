@@ -472,14 +472,20 @@ export  class Split {
         nodes.push((slice as Surplus).exportXml());
       }
 
-    const  buffer: string[] = [];
+    let  buffer: string[] = [];
     for (const slice of this.subscript) {
       if (slice instanceof Content) {
         buffer.push((slice as Content).getText());
-      } else if (slice instanceof Metadata) {
-        nodes.push((slice as Metadata).exportXml());
-      }else if (slice instanceof Surplus) {
-        nodes.push((slice as Surplus).exportXml());
+      } else {
+        if (buffer.length > 0) {
+          nodes.push(xmlElementNode('subscr', {'c': buffer.join('')}, []));
+          buffer = [];
+        }
+        if (slice instanceof Metadata) {
+          nodes.push((slice as Metadata).exportXml());
+        } else if (slice instanceof Surplus) {
+          nodes.push((slice as Surplus).exportXml());
+        }
       }
     }
     
