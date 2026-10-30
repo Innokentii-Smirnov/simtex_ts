@@ -133,7 +133,7 @@ export class WordConstants {
   /**
    * The pattern for text with hyphens, equals and escaped hyphens.
    */
-  static readonly patternHyphenAndEscape: RegExp = new RegExp('([\\-=' + WordConstants.hyphenEscapeCharacter + WordConstants.equalEscapeCharacter + ']{1})' + '([^\\-=' + WordConstants.hyphenEscapeCharacter + WordConstants.equalEscapeCharacter + ']*)', 'g');
+  static readonly patternHyphenAndEscape: RegExp = new RegExp('([\\-=⒣' + WordConstants.hyphenEscapeCharacter + WordConstants.equalEscapeCharacter + ']{1})' + '([^\\-=⒣' + WordConstants.hyphenEscapeCharacter + WordConstants.equalEscapeCharacter + ']*)', 'g');
 
 }
 

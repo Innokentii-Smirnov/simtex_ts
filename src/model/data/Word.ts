@@ -572,9 +572,7 @@ export class Word implements LineEntity {
     } else {			
       text = this.escapeBeginNEqual(this.escapeSurplus(text));
     
-      const hyphenFirstIndex: number = text.indexOf('-');
-      const equalFirstIndex: number = text.indexOf('=');
-      const tagFirstIndex = hyphenFirstIndex < 0 ? equalFirstIndex : (equalFirstIndex < 0 ? hyphenFirstIndex : Math.min(hyphenFirstIndex, equalFirstIndex));
+      const tagFirstIndex: number = text.search(/[-=⒣]/);
 
       let type: FragmentBreakdownType | null = null;
       let buffer: string [] = [];

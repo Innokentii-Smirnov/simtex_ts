@@ -94,7 +94,8 @@ export function debug(transliterationFileName: string) {
 
 export function word(language: string, word: string) {
   const lang : ParagraphLanguageType =  getLanguage(language);
-  const node: XmlElementNode = Word.parseWord(lang, word).exportXml();
+  const wordObject = Word.parseWord(lang, word);
+  const node: XmlElementNode = wordObject.exportXml();
   
   let name = ParagraphLanguageType[lang];
     
@@ -103,6 +104,9 @@ export function word(language: string, word: string) {
   
   console.log('language: ' + name);  
   console.log('word: "' + word + '"');
+  if (wordObject instanceof Word) {
+    console.log(wordObject.getStatus());
+  }
   console.log('\txml: ' + writeNode(node, {}, true).join(''));
 }
 
