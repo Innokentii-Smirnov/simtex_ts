@@ -41,6 +41,11 @@ import { TagType } from '../metadata/TagType';
 import { Content } from './fragment/Content';
 import { Collection } from './fragment/Collection';
 
+function unescapeHyphenAndEqual(char: string): string {
+  return char.replace(WordConstants.hyphenEscapeCharacter, '-')
+             .replace(WordConstants.equalEscapeCharacter, '=');
+}
+
 /**
  * Defines words.
  *
@@ -537,7 +542,7 @@ export class Word implements LineEntity {
       if(index < text.length) {
         buffer.push(text.substring(index));
       }
-    
+
     return buffer.join('');
   }
   
@@ -618,8 +623,7 @@ export class Word implements LineEntity {
           if (match[2] == '') {
             if (type == null)
               type = FragmentBreakdownType.Basic;
-
-            buffer.push(match[1] == '-' || WordConstants.hyphenEscapeCharacter == match[1] ? '-' : '=');
+            buffer.push(unescapeHyphenAndEqual(match[1]));
           } else if (WordConstants.hyphenEscapeCharacter == match[1] || WordConstants.equalEscapeCharacter == match[1]) {
             if (Word.isSumerogramType(match[2])) {
               if (type !== null && FragmentBreakdownType.Sumerogram != type) {
